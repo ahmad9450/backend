@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
 const postSchema = mongoose.Schema({
   content: {
@@ -13,7 +13,7 @@ const postSchema = mongoose.Schema({
     type: String,
     required : false,
   },
-  user: {
+  uploader : {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required : false,
@@ -23,4 +23,5 @@ const postSchema = mongoose.Schema({
     ref: "User",
   }]
 },{timestamps : true});
-module.exports = mongoose.model("Post",postSchema);
+
+ export default  mongoose.model("Post",postSchema);

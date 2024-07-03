@@ -1,10 +1,10 @@
-const express = require("express");
-const dotenv = require("dotenv");
+import express from 'express';
+import dotenv from 'dotenv';
 dotenv.config();
-const app = require('./app');
-const connectDb = require('./utils//db.js');
+import app from './app.js';
+import connectDb from './db/db.js';
 
-port = process.env.PORT || 6000;
+const port = process.env.PORT || 6000;
 
 connectDb()
   .then(() => {
