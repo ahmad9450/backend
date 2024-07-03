@@ -1,0 +1,23 @@
+# Ignore artifacts:
+build
+coverage
+node_modules
+
+# Ignore all HTML files:
+*.html
+
+*.env
+.env
+.env.*
+
+# Ignore specific files:
+*.min.js
+dist/
+logs/
+*.log
+yarn.lock
+package-lock.json
+
+# Ignore configuration files:
+.prettierrc
+.eslintrc

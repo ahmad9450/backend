@@ -29,7 +29,6 @@ const userSchema = mongoose.Schema({
   mobileNumber: {
     type: String,
     default: '',
-    trim : true,
   },
   image: {
     type: String,
@@ -46,7 +45,7 @@ const userSchema = mongoose.Schema({
   posts:[{
     type : mongoose.Schema.Types.ObjectId,
     ref:"Post",
-    default:[],
+    default : [],
   }]
 }, { timestamps: true });
 
