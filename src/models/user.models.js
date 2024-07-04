@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 const userSchema = mongoose.Schema({
   username: {
@@ -34,7 +35,19 @@ const userSchema = mongoose.Schema({
     type: String,
     default: '',
   },
+  isAdmin :{
+     type: Boolean,
+     default : false,
+  },
   avatar: {
+    type: String,
+    default: '',
+  },
+  address: {
+    type: String,
+    default: '',
+  },
+  bio: {
     type: String,
     default: '',
   },
@@ -51,14 +64,14 @@ const userSchema = mongoose.Schema({
     ref:"Post",
     default : [],
   }],
-  watchHistory:{
+  watchHistory:[{
     type : mongoose.Schema.Types.ObjectId,
     ref : "Video",
-  }
+  }],
 }, { timestamps: true });
 
 userSchema.pre("save",async function(next){
-  if(this.password.isModified){
+  if(this.isModified("password") || this.isNew){
     this.password = await bcrypt.hash(this.password,12);
     next ();
   }
@@ -70,11 +83,11 @@ userSchema.methods.isPasswordCorrect = async function(password){
   return await bcrypt.compare(password,this.password);
 };
 userSchema.methods.generateAccessToken = function (){
-  jwt.sign(
+  return jwt.sign(
     {
       _id : this._id,
       email : this.email,
-      username : this.usernwme,
+      username : this.username,
       fullName : this.fullName,
     },
     process.env.ACCESS_TOKEN_SECRET,
@@ -84,7 +97,7 @@ userSchema.methods.generateAccessToken = function (){
   );
 };
 userSchema.methods.generateRefreshToken = function (){
-  jwt.sign(
+  return jwt.sign(
     {
       _id : this._id,
     },

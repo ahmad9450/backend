@@ -8,10 +8,10 @@ router.get("/",(req,res)=>{
 });
 router.get("/create",async (req,res)=>{
   const createdauser = await userModel.create({
-    username : "ahmadraza",
-    email:"ahmad@gmail.com",
-    password: "ahmad",
-    fullName: "Ahmad Raza Khan",
+    username : "anwar",
+    email:"anwar@gmail.com",
+    password: "anwar",
+    fullName: "Anwar Raza Khan",
     
   });
   res.send(createdauser);
