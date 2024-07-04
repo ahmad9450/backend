@@ -43,15 +43,18 @@ const userSchema = mongoose.Schema({
     type: String,
     default: '',
   },
+  coverImage: {
+    type: String,
+    default: '',
+  },
+  refreshToken : {
+    type: String,
+  },
   address: {
     type: String,
     default: '',
   },
   bio: {
-    type: String,
-    default: '',
-  },
-  coverImage: {
     type: String,
     default: '',
   },

@@ -5,7 +5,7 @@ import path from 'path';
 // Define storage
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, '../../public/temp')); // Ensure this path exists
+    cb(null,  './public/temp'); // Ensure this path exists
   },
   filename: function (req, file, cb) {
     // Generate a unique filename using crypto
